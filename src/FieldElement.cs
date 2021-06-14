@@ -31,20 +31,20 @@ namespace Ristretto
             this.t = t;
         }
 
-        public static int Load_3(byte[] @in, int offset)
+        public static int Load3(byte[] input, int offset)
         {
-            int result = @in[offset++] & 0xff;
-            result |= (@in[offset++] & 0xff) << 8;
-            result |= (@in[offset] & 0xff) << 16;
+            int result = input[offset++] & 0xff;
+            result |= (input[offset++] & 0xff) << 8;
+            result |= (input[offset] & 0xff) << 16;
             return result;
         }
 
-        public static long Load_4(byte[] @in, int offset)
+        public static long Load4(byte[] input, int offset)
         {
-            int result = @in[offset++] & 0xff;
-            result |= (@in[offset++] & 0xff) << 8;
-            result |= (@in[offset++] & 0xff) << 16;
-            result |= @in[offset] << 24;
+            int result = input[offset++] & 0xff;
+            result |= (input[offset++] & 0xff) << 8;
+            result |= (input[offset++] & 0xff) << 16;
+            result |= input[offset] << 24;
             return ((long)result) & 0xffffffffL;
         }
 
@@ -55,16 +55,16 @@ namespace Ristretto
         /// <returns>The field element in its 2^{25.5} bit representation.</returns>
         public static FieldElement FromByteArray(byte[] input)
         {
-            long h0 = Load_4(input, 0);
-            long h1 = Load_3(input, 4) << 6;
-            long h2 = Load_3(input, 7) << 5;
-            long h3 = Load_3(input, 10) << 3;
-            long h4 = Load_3(input, 13) << 2;
-            long h5 = Load_4(input, 16);
-            long h6 = Load_3(input, 20) << 7;
-            long h7 = Load_3(input, 23) << 5;
-            long h8 = Load_3(input, 26) << 4;
-            long h9 = (Load_3(input, 29) & 0x7FFFFF) << 2;
+            long h0 = Load4(input, 0);
+            long h1 = Load3(input, 4) << 6;
+            long h2 = Load3(input, 7) << 5;
+            long h3 = Load3(input, 10) << 3;
+            long h4 = Load3(input, 13) << 2;
+            long h5 = Load4(input, 16);
+            long h6 = Load3(input, 20) << 7;
+            long h7 = Load3(input, 23) << 5;
+            long h8 = Load3(input, 26) << 4;
+            long h9 = (Load3(input, 29) & 0x7FFFFF) << 2;
             long carry0;
             long carry1;
             long carry2;
@@ -258,10 +258,6 @@ namespace Ristretto
             byte[] s = ToByteArray();
             return s.GetHashCode();
         }
-
-
-
-
 
         /// <summary>
         /// Determine whether this FieldElement is zero.
@@ -1074,7 +1070,7 @@ namespace Ristretto
         /// Raises this field element to the power (p-5)/8 = 2^{252} - 3
         /// </summary>
         /// <returns>{this}^{(p-5)/8}</returns>
-        public FieldElement powP58()
+        public FieldElement PowP58()
         {
             FieldElement t0, t1, t2;
 
@@ -1225,11 +1221,11 @@ namespace Ristretto
          *         <li>(false, +$\sqrt{i * u / v}$) if $u / v$ is non-square (so $i * u
          *         / v$ is square).
          */
-        public static SqrtRatioM1Result sqrtRatioM1(FieldElement u, FieldElement v)
+        public static SqrtRatioM1Result SqrtRatioM1(FieldElement u, FieldElement v)
         {
             FieldElement v3 = v.Square().Multiply(v);
             FieldElement v7 = v3.Square().Multiply(v);
-            FieldElement r = u.Multiply(v3).Multiply(u.Multiply(v7).powP58());
+            FieldElement r = u.Multiply(v3).Multiply(u.Multiply(v7).PowP58());
             FieldElement check = v.Multiply(r.Square());
 
             FieldElement uNeg = u.Negate();

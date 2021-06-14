@@ -3,14 +3,26 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Description>Ristretto 255 C# dotnet</Description>
+    <Description>Ristretto255 implementation for C# dotnet.
+Ristretto is a technique for constructing prime order elliptic curve groups with non-malleable encodings.
+Ristretto255 is built on top of Curve25519</Description>
     <Authors>fbredy</Authors>
+    <AssemblyVersion>1.0.1.0</AssemblyVersion>
+    <FileVersion>1.0.1.0</FileVersion>
+    <Version>1.0.1</Version>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/fbredy/ristretto-dotnet</PackageProjectUrl>
+    <PackageIcon>Ristretto.jpg</PackageIcon>
   </PropertyGroup>
 
   <ItemGroup>
     <Compile Remove="Ristretto.Test\**" />
     <EmbeddedResource Remove="Ristretto.Test\**" />
     <None Remove="Ristretto.Test\**" />
+    <None Include="..\Ristretto.jpg">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>

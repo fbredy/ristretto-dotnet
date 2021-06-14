@@ -83,31 +83,31 @@ namespace Ristretto.Test
             FieldElement.SqrtRatioM1Result sqrt;
 
             // 0/0 should return (1, 0) since u is 0
-            sqrt = FieldElement.sqrtRatioM1(zero, zero);
+            sqrt = FieldElement.SqrtRatioM1(zero, zero);
             Assert.AreEqual(1, sqrt.WasSquare);
             Assert.AreEqual(zero, sqrt.Result);
             Assert.AreEqual(0, sqrt.Result.IsNegative());
 
             // 1/0 should return (0, 0) since v is 0, u is nonzero
-            sqrt = FieldElement.sqrtRatioM1(one, zero);
+            sqrt = FieldElement.SqrtRatioM1(one, zero);
             Assert.AreEqual(0, sqrt.WasSquare);
             Assert.AreEqual(zero, sqrt.Result);
             Assert.AreEqual(0, sqrt.Result.IsNegative());
 
             // 2/1 is nonsquare, so we expect (0, sqrt(i*2))
-            sqrt = FieldElement.sqrtRatioM1(two, one);
+            sqrt = FieldElement.SqrtRatioM1(two, one);
             Assert.AreEqual(0, sqrt.WasSquare);
             Assert.AreEqual(two.Multiply(i), sqrt.Result.Square());
             Assert.AreEqual(0, sqrt.Result.IsNegative());
 
             // 4/1 is square, so we expect (1, sqrt(4))
-            sqrt = FieldElement.sqrtRatioM1(four, one);
+            sqrt = FieldElement.SqrtRatioM1(four, one);
             Assert.AreEqual(1, sqrt.WasSquare);
             Assert.AreEqual(four, sqrt.Result.Square());
             Assert.AreEqual(0, sqrt.Result.IsNegative());
 
             // 1/4 is square, so we expect (1, 1/sqrt(4))
-            sqrt = FieldElement.sqrtRatioM1(one, four);
+            sqrt = FieldElement.SqrtRatioM1(one, four);
             Assert.AreEqual(1, sqrt.WasSquare);
             Assert.AreEqual(one, sqrt.Result.Square().Multiply(four));
             Assert.AreEqual(0, sqrt.Result.IsNegative());
@@ -118,7 +118,7 @@ namespace Ristretto.Test
         {
             FieldElement a = FieldElement.FromByteArray(A_BYTES);
             FieldElement ap58 = FieldElement.FromByteArray(AP58_BYTES);
-            Assert.AreEqual(ap58, a.powP58());
+            Assert.AreEqual(ap58, a.PowP58());
         }
 
         [TestMethod]

@@ -9,7 +9,7 @@ namespace Ristretto.Test
         public void checkEdwardsD()
         {
             Assert.AreEqual(
-                FieldElement.FromByteArray(StrUtils.hexToBytes("a3785913ca4deb75abd841414d0a700098e879777940c78c73fe6f2bee6c0352")),
+                FieldElement.FromByteArray(StrUtils.HexToBytes("a3785913ca4deb75abd841414d0a700098e879777940c78c73fe6f2bee6c0352")),
                 Constants.EDWARDS_D);
         }
 
@@ -40,14 +40,14 @@ namespace Ristretto.Test
         public void checkSqrtM1()
         {
             Assert.AreEqual(Constants.SQRT_M1, FieldElement
-                    .FromByteArray(StrUtils.hexToBytes("b0a00e4a271beec478e42fad0618432fa7d7fb3d99004d2b0bdfc14f8024832b")));
+                    .FromByteArray(StrUtils.HexToBytes("b0a00e4a271beec478e42fad0618432fa7d7fb3d99004d2b0bdfc14f8024832b")));
         }
 
         [TestMethod]
         public void checkEd25519Basepoint()
         {
             CompressedEdwardsY encoded = new CompressedEdwardsY(
-                    StrUtils.hexToBytes("5866666666666666666666666666666666666666666666666666666666666666"));
+                    StrUtils.HexToBytes("5866666666666666666666666666666666666666666666666666666666666666"));
             EdwardsPoint B = encoded.Decompress();
             Assert.AreEqual(Constants.ED25519_BASEPOINT.X, B.X);
             Assert.AreEqual(Constants.ED25519_BASEPOINT.Y, B.Y);

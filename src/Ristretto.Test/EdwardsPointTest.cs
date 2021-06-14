@@ -14,44 +14,44 @@ namespace Ristretto.Test
          * Compressed Edwards Y form of the Ed25519 basepoint.
          */
         public static readonly CompressedEdwardsY ED25519_BASEPOINT_COMPRESSED = new CompressedEdwardsY(
-                StrUtils.hexToBytes("5866666666666666666666666666666666666666666666666666666666666666"));
+                StrUtils.HexToBytes("5866666666666666666666666666666666666666666666666666666666666666"));
 
         /**
          * Compressed Edwards Y form of 2*basepoint.
          */
         public static readonly CompressedEdwardsY BASE2_CMPRSSD = new CompressedEdwardsY(
-                StrUtils.hexToBytes("c9a3f86aae465f0e56513864510f3997561fa2c9e85ea21dc2292309f3cd6022"));
+                StrUtils.HexToBytes("c9a3f86aae465f0e56513864510f3997561fa2c9e85ea21dc2292309f3cd6022"));
 
         /**
          * Compressed Edwards Y form of 16*basepoint.
          */
         public static readonly CompressedEdwardsY BASE16_CMPRSSD = new CompressedEdwardsY(
-                StrUtils.hexToBytes("eb2767c137ab7ad8279c078eff116ab0786ead3a2e0f989f72c37f82f2969670"));
+                StrUtils.HexToBytes("eb2767c137ab7ad8279c078eff116ab0786ead3a2e0f989f72c37f82f2969670"));
 
         /**
          * 4493907448824000747700850167940867464579944529806937181821189941592931634714
          */
         public static readonly Scalar A_SCALAR = new Scalar(
-                StrUtils.hexToBytes("1a0e978a90f6622d3747023f8ad8264da758aa1b88e040d1589e7b7f2376ef09"));
+                StrUtils.HexToBytes("1a0e978a90f6622d3747023f8ad8264da758aa1b88e040d1589e7b7f2376ef09"));
 
         /**
          * 2506056684125797857694181776241676200180934651973138769173342316833279714961
          */
         public static readonly Scalar B_SCALAR = new Scalar(
-                StrUtils.hexToBytes("91267acf25c2091ba217747b66f0b32e9df2a56741cfdac456a7d4aab8608a05"));
+                StrUtils.HexToBytes("91267acf25c2091ba217747b66f0b32e9df2a56741cfdac456a7d4aab8608a05"));
 
         /**
          * A_SCALAR * basepoint, computed with ed25519.py
          */
         public static readonly CompressedEdwardsY A_TIMES_BASEPOINT = new CompressedEdwardsY(
-                StrUtils.hexToBytes("ea27e26053df1b5956f14d5dec3c34c384a269b74cc3803ea8e2e7c9425e40a5"));
+                StrUtils.HexToBytes("ea27e26053df1b5956f14d5dec3c34c384a269b74cc3803ea8e2e7c9425e40a5"));
 
         /**
          * A_SCALAR * (A_TIMES_BASEPOINT) + B_SCALAR * BASEPOINT computed with
          * ed25519.py
          */
         public static readonly CompressedEdwardsY DOUBLE_SCALAR_MULT_RESULT = new CompressedEdwardsY(
-                StrUtils.hexToBytes("7dfd6c45af6d6e0eba20371a236459c4c0468343de704b85096ffe354f132b42"));
+                StrUtils.HexToBytes("7dfd6c45af6d6e0eba20371a236459c4c0468343de704b85096ffe354f132b42"));
 
         /**
          * The 8-torsion subgroup $\mathcal E [8]$.
@@ -64,21 +64,21 @@ namespace Ristretto.Test
          */
         public static readonly CompressedEdwardsY[] EIGHT_TORSION_COMPRESSED = new CompressedEdwardsY[] {
             new CompressedEdwardsY(
-                    StrUtils.hexToBytes("0100000000000000000000000000000000000000000000000000000000000000")),
+                    StrUtils.HexToBytes("0100000000000000000000000000000000000000000000000000000000000000")),
             new CompressedEdwardsY(
-                    StrUtils.hexToBytes("c7176a703d4dd84fba3c0b760d10670f2a2053fa2c39ccc64ec7fd7792ac037a")),
+                    StrUtils.HexToBytes("c7176a703d4dd84fba3c0b760d10670f2a2053fa2c39ccc64ec7fd7792ac037a")),
             new CompressedEdwardsY(
-                    StrUtils.hexToBytes("0000000000000000000000000000000000000000000000000000000000000080")),
+                    StrUtils.HexToBytes("0000000000000000000000000000000000000000000000000000000000000080")),
             new CompressedEdwardsY(
-                    StrUtils.hexToBytes("26e8958fc2b227b045c3f489f2ef98f0d5dfac05d3c63339b13802886d53fc05")),
+                    StrUtils.HexToBytes("26e8958fc2b227b045c3f489f2ef98f0d5dfac05d3c63339b13802886d53fc05")),
             new CompressedEdwardsY(
-                    StrUtils.hexToBytes("ecffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff7f")),
+                    StrUtils.HexToBytes("ecffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff7f")),
             new CompressedEdwardsY(
-                    StrUtils.hexToBytes("26e8958fc2b227b045c3f489f2ef98f0d5dfac05d3c63339b13802886d53fc85")),
+                    StrUtils.HexToBytes("26e8958fc2b227b045c3f489f2ef98f0d5dfac05d3c63339b13802886d53fc85")),
             new CompressedEdwardsY(
-                    StrUtils.hexToBytes("0000000000000000000000000000000000000000000000000000000000000000")),
+                    StrUtils.HexToBytes("0000000000000000000000000000000000000000000000000000000000000000")),
             new CompressedEdwardsY(
-                    StrUtils.hexToBytes("c7176a703d4dd84fba3c0b760d10670f2a2053fa2c39ccc64ec7fd7792ac03fa")) };
+                    StrUtils.HexToBytes("c7176a703d4dd84fba3c0b760d10670f2a2053fa2c39ccc64ec7fd7792ac03fa")) };
 
         [TestMethod]
         public void basepointDecompressionCompression()
@@ -180,10 +180,10 @@ namespace Ristretto.Test
             // Little-endian
             Scalar zero = Scalar.ZERO;
             Scalar one = Scalar.ONE;
-            Scalar two = new Scalar(StrUtils.hexToBytes("0200000000000000000000000000000000000000000000000000000000000000"));
-            Scalar a = new Scalar(StrUtils.hexToBytes("d072f8dd9c07fa7bc8d22a4b325d26301ee9202f6db89aa7c3731529e37e437c"));
+            Scalar two = new Scalar(StrUtils.HexToBytes("0200000000000000000000000000000000000000000000000000000000000000"));
+            Scalar a = new Scalar(StrUtils.HexToBytes("d072f8dd9c07fa7bc8d22a4b325d26301ee9202f6db89aa7c3731529e37e437c"));
             EdwardsPoint A = new CompressedEdwardsY(
-                    StrUtils.hexToBytes("d4cf8595571830644bd14af416954d09ab7159751ad9e0f7a6cbd92379e71a66")).Decompress();
+                    StrUtils.HexToBytes("d4cf8595571830644bd14af416954d09ab7159751ad9e0f7a6cbd92379e71a66")).Decompress();
             EdwardsPoint B = Constants.ED25519_BASEPOINT;
             EdwardsPoint I = EdwardsPoint.IDENTITY;
 

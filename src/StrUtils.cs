@@ -11,7 +11,7 @@ namespace Ristretto
         /// </summary>
         /// <param name="raw">the byte[] to be converted.</param>
         /// <returns>the hex representation as a string.</returns>
-        public static string bytesToHex(byte[] raw)
+        public static string BytesToHex(byte[] raw)
         {
             if (raw == null)
             {
@@ -25,10 +25,10 @@ namespace Ristretto
             return hex.ToString();
         }
 
-        public static byte[] hexToBytes(string s)
+        public static byte[] HexToBytes(string s)
         {
             // Strip any internal whitespace
-            var hexastring = s.Replace(" ", "");
+            var hexastring = s.Replace(" ", string.Empty);
 
             return Enumerable.Range(0, hexastring.Length)
                      .Where(x => x % 2 == 0)
@@ -36,10 +36,10 @@ namespace Ristretto
                      .ToArray();
         }
 
-        public static sbyte[] hexToSBytes(string s)
+        public static sbyte[] HexToSBytes(string s)
         {
             // Strip any internal whitespace
-            var hexastring = s.Replace(" ", "");
+            var hexastring = s.Replace(" ", string.Empty);
 
             return Enumerable.Range(0, hexastring.Length)
                      .Where(x => x % 2 == 0)

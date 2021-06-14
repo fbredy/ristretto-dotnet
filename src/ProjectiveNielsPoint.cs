@@ -91,7 +91,7 @@ namespace Ristretto
                 ProjectiveNielsPoint t = ProjectiveNielsPoint.IDENTITY;
                 for (int i = 1; i < 9; i++)
                 {
-                    t = t.CtSelect(this.table[i - 1], ConstantTime.equal(xabs, i));
+                    t = t.CtSelect(this.table[i - 1], ConstantTime.Equal(xabs, i));
                 }
 
                 // -|x| P

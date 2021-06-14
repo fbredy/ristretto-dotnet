@@ -66,14 +66,14 @@ namespace Ristretto
             // v = dy²+1
             FieldElement v = YY.Multiply(Constants.EDWARDS_D).Add(FieldElement.ONE);
 
-            FieldElement.SqrtRatioM1Result sqrt = FieldElement.sqrtRatioM1(u, v);
+            FieldElement.SqrtRatioM1Result sqrt = FieldElement.SqrtRatioM1(u, v);
             if (sqrt.WasSquare != 1)
             {
                 throw new InvalidEncodingException("not a valid EdwardsPoint");
             }
 
             FieldElement X = sqrt.Result.Negate().CtSelect(sqrt.Result,
-                    ConstantTime.equal(sqrt.Result.IsNegative(), ConstantTime.bit(data, 255)));
+                    ConstantTime.Equal(sqrt.Result.IsNegative(), ConstantTime.Bit(data, 255)));
 
             return new EdwardsPoint(X, Y, FieldElement.ONE, X.Multiply(Y));
         }

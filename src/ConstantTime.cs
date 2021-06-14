@@ -12,7 +12,7 @@
         /// <param name="b">a byte, represented as an int</param>
         /// <param name="c">a byte, represented as an int</param>
         /// <returns>1 if b and c are equal, 0 otherwise.</returns>
-        public static int equal(int b, int c)
+        public static int Equal(int b, int c)
         {
             int result = 0;
             int xor = b ^ c;
@@ -44,7 +44,7 @@
                 result |= b[i] ^ c[i];
             }
 
-            return equal(result, 0);
+            return Equal(result, 0);
         }
 
         /// <summary>
@@ -74,7 +74,7 @@
         /// <param name="h">the byte array.</param>
         /// <param name="i">the bit index.</param>
         /// <returns>0 or 1, the value of the i'th bit in h</returns>
-        public static int bit(byte[] h, int i)
+        public static int Bit(byte[] h, int i)
         {
             return (h[i >> 3] >> (i & 7)) & 1;
         }

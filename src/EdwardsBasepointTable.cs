@@ -5,7 +5,7 @@
     /// </summary>
     public class EdwardsBasepointTable
     {
-        readonly AffineNielsPoint.LookupTable[] tables;
+        private readonly AffineNielsPoint.LookupTable[] tables;
 
         /// <summary>
         /// Create a table of pre-computed multiples of basepoint.

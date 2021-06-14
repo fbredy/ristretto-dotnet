@@ -7,7 +7,7 @@ namespace Ristretto.Test
     public class RistrettoElementTest
     {
         static readonly CompressedRistretto RISTRETTO_GENERATOR_COMPRESSED = new CompressedRistretto(
-                StrUtils.hexToBytes("e2f2ae0a 6abc4e71 a884a961 c500515f 58e30b6a a582dd8d b6a65945 e08d2d76"));
+                StrUtils.HexToBytes("e2f2ae0a 6abc4e71 a884a961 c500515f 58e30b6a a582dd8d b6a65945 e08d2d76"));
 
         static readonly string[] GENERATOR_MULTIPLES = new [] {
             "00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000",
@@ -120,7 +120,7 @@ namespace Ristretto.Test
             RistrettoElement P = RistrettoElement.IDENTITY;
             for (int i = 0; i < GENERATOR_MULTIPLES.Length; i++)
             {
-                CompressedRistretto compressed = new CompressedRistretto(StrUtils.hexToBytes(GENERATOR_MULTIPLES[i]));
+                CompressedRistretto compressed = new CompressedRistretto(StrUtils.HexToBytes(GENERATOR_MULTIPLES[i]));
                 Assert.AreEqual(compressed, P.Compress());
                 Assert.AreEqual(P, compressed.Decompress());
                 P = P.Add(Constants.RISTRETTO_GENERATOR);
@@ -134,7 +134,7 @@ namespace Ristretto.Test
             for (int i = GENERATOR_MULTIPLES.Length - 1; i >= 0; i--)
             {
                 P = P.Subtract(Constants.RISTRETTO_GENERATOR);
-                CompressedRistretto compressed = new CompressedRistretto(StrUtils.hexToBytes(GENERATOR_MULTIPLES[i]));
+                CompressedRistretto compressed = new CompressedRistretto(StrUtils.HexToBytes(GENERATOR_MULTIPLES[i]));
                 Assert.AreEqual(compressed, P.Compress());
                 Assert.AreEqual(P, compressed.Decompress());
             }
@@ -150,7 +150,7 @@ namespace Ristretto.Test
         [TestMethod]
         public void generatorDblVsGenerator2()
         {
-            RistrettoElement expected = new CompressedRistretto(StrUtils.hexToBytes(GENERATOR_MULTIPLES[2])).Decompress();
+            RistrettoElement expected = new CompressedRistretto(StrUtils.HexToBytes(GENERATOR_MULTIPLES[2])).Decompress();
             Assert.AreEqual(expected, Constants.RISTRETTO_GENERATOR.Doubling());
         }
 
@@ -161,7 +161,7 @@ namespace Ristretto.Test
             s = new byte[32];
             s[0] = 12;
             Scalar twelve = new Scalar(s);
-            RistrettoElement expected = new CompressedRistretto(StrUtils.hexToBytes(GENERATOR_MULTIPLES[12])).Decompress();
+            RistrettoElement expected = new CompressedRistretto(StrUtils.HexToBytes(GENERATOR_MULTIPLES[12])).Decompress();
             Assert.AreEqual(expected, Constants.RISTRETTO_GENERATOR.Multiply(twelve));
         }
 
@@ -170,13 +170,13 @@ namespace Ristretto.Test
         {
             for (int i = 0; i < INVALID_ENCODINGS.Length; i++)
             {
-                CompressedRistretto s = new CompressedRistretto(StrUtils.hexToBytes(INVALID_ENCODINGS[i]));
+                CompressedRistretto s = new CompressedRistretto(StrUtils.HexToBytes(INVALID_ENCODINGS[i]));
                 try
                 {
                     s.Decompress();
                     Assert.Fail("Invalid encoding should have been rejected");
                 }
-                catch (InvalidEncodingException expected)
+                catch (InvalidEncodingException)
                 {
                     // Woohoo!
                 }
@@ -189,8 +189,8 @@ namespace Ristretto.Test
             Assert.AreEqual(FROM_UNIFORM_BYTES_OUTPUTS.Length, FROM_UNIFORM_BYTES_INPUTS.Length);
             for (int i = 0; i < FROM_UNIFORM_BYTES_INPUTS.Length; i++)
             {
-                RistrettoElement P = RistrettoElement.fromUniformBytes(StrUtils.hexToBytes(FROM_UNIFORM_BYTES_INPUTS[i]));
-                Assert.AreEqual(new CompressedRistretto(StrUtils.hexToBytes(FROM_UNIFORM_BYTES_OUTPUTS[i])), P.Compress());
+                RistrettoElement P = RistrettoElement.FromUniformBytes(StrUtils.HexToBytes(FROM_UNIFORM_BYTES_INPUTS[i]));
+                Assert.AreEqual(new CompressedRistretto(StrUtils.HexToBytes(FROM_UNIFORM_BYTES_OUTPUTS[i])), P.Compress());
             }
         }
     }

@@ -83,19 +83,19 @@ namespace Ristretto.Test
         [TestMethod]
         public void addLToZero()
         {
-            CollectionAssert.AreEqual(UnpackedScalar.ZERO.add(Constants.L).s, (UnpackedScalar.ZERO.s));
+            CollectionAssert.AreEqual(UnpackedScalar.ZERO.Add(Constants.L).s, (UnpackedScalar.ZERO.s));
         }
 
         [TestMethod]
         public void add()
         {
-            CollectionAssert.AreEqual(A.add(B).s, (UnpackedScalar.ZERO.s));
+            CollectionAssert.AreEqual(A.Add(B).s, (UnpackedScalar.ZERO.s));
         }
 
         [TestMethod]
         public void subtract()
         {
-            CollectionAssert.AreEqual(A.subtract(B).s, (AB.s));
+            CollectionAssert.AreEqual(A.Subtract(B).s, (AB.s));
         }
 
         [TestMethod]

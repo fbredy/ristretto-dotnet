@@ -24,30 +24,6 @@ namespace Ristretto
             this.data = data;
         }
 
-        /**
-         * Overrides class serialization to use the canonical encoded format.
-         */
-        //private void writeObject(ObjectOutputStream output)
-        //{
-        //    output.write(this.toByteArray());
-        //}
-
-        /**
-         * Overrides class serialization to use the canonical encoded format.
-         */
-        //private void readObject(ObjectInputStream input)
-        //{
-        //    byte[] encoded = new byte[32];
-        //    input.readFully(encoded);
-        //    this.data = encoded;
-        //}
-
-        //@SuppressWarnings("unused")
-        //private void readObjectNoData()
-        //{
-        //    throw new InvalidOperationException("Cannot deserialize CompressedRistretto from no data");
-        //}
-
         /// <summary>
         /// Attempts to decompress to a RistrettoElement.
         /// This is the ristretto255 DECODE function.
@@ -74,7 +50,7 @@ namespace Ristretto
 
             FieldElement v = Constants.NEG_EDWARDS_D.Multiply(u1.Square()).Subtract(u2Sqr);
 
-            FieldElement.SqrtRatioM1Result invsqrt = FieldElement.sqrtRatioM1(FieldElement.ONE, v.Multiply(u2Sqr));
+            FieldElement.SqrtRatioM1Result invsqrt = FieldElement.SqrtRatioM1(FieldElement.ONE, v.Multiply(u2Sqr));
 
             FieldElement denX = invsqrt.Result.Multiply(u2);
             FieldElement denY = invsqrt.Result.Multiply(denX).Multiply(v);

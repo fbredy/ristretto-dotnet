@@ -22,39 +22,7 @@ namespace Ristretto
             this.Representation = representation;
         }
 
-        /**
-         * Overrides class serialization to use the canonical encoded format.
-         */
-        //private void writeObject(ObjectOutputStream output)
-        //{
-        //    output.write(this.compress().toByteArray());
-        //}
-
-        /**
-         * Overrides class serialization to use the canonical encoded format.
-         */
-        //private void readObject(ObjectInputStream input)
-        //{
-        //    byte[] encoded = new byte[32];
-        //    input.readFully(encoded);
-
-        //    try
-        //    {
-        //        RistrettoElement elem = new CompressedRistretto(encoded).decompress();
-        //        this.repr = elem.repr;
-        //    }
-        //    catch (InvalidEncodingException iee)
-        //    {
-        //        throw new InvalidOperationException(iee.Message);
-        //    }
-        //}
-
-        //@SuppressWarnings("unused")
-        //private void readObjectNoData()
-        //{
-        //    throw new InvalidOperationException("Cannot deserialize RistrettoElement from no data");
-        //}
-
+        
         /// <summary>
         /// The function MAP(t) from section 3.2.4 of the ristretto255 ID.
         /// </summary>
@@ -67,7 +35,7 @@ namespace Ristretto
             FieldElement v = FieldElement.MINUS_ONE.Subtract(r.Multiply(Constants.EDWARDS_D))
               .Multiply(r.Add(Constants.EDWARDS_D));
 
-            FieldElement.SqrtRatioM1Result sqrt = FieldElement.sqrtRatioM1(u, v);
+            FieldElement.SqrtRatioM1Result sqrt = FieldElement.SqrtRatioM1(u, v);
             FieldElement s = sqrt.Result;
 
             FieldElement sPrime = s.Multiply(t).CtAbs().Negate();
@@ -92,7 +60,7 @@ namespace Ristretto
         /// </summary>
         /// <param name="b">data</param>
         /// <returns>the resulting element.</returns>
-        public static RistrettoElement fromUniformBytes(byte[] b)
+        public static RistrettoElement FromUniformBytes(byte[] b)
         {
             // 1. Interpret the least significant 255 bits of b[ 0..32] as an
             // integer r0 in little-endian representation. Reduce r0 modulo p.
@@ -126,7 +94,7 @@ namespace Ristretto
             FieldElement u2 = this.Representation.X.Multiply(this.Representation.Y);
 
             // Ignore was_square since this is always square
-            FieldElement.SqrtRatioM1Result invsqrt = FieldElement.sqrtRatioM1(FieldElement.ONE,
+            FieldElement.SqrtRatioM1Result invsqrt = FieldElement.SqrtRatioM1(FieldElement.ONE,
                     u1.Multiply(u2.Square()));
 
             FieldElement den1 = invsqrt.Result.Multiply(u1);

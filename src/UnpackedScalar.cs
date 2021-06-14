@@ -107,7 +107,7 @@ namespace Ristretto
         /// </summary>
         /// <param name="b">the Scalar to add to this.</param>
         /// <returns>a + b mod ℓ</returns>
-        public UnpackedScalar add(UnpackedScalar b)
+        public UnpackedScalar Add(UnpackedScalar b)
         {
             int[] sum = new int[9];
 
@@ -119,7 +119,7 @@ namespace Ristretto
             }
 
             // Subtract l if the sum is >= l
-            return new UnpackedScalar(sum).subtract(Constants.L);
+            return new UnpackedScalar(sum).Subtract(Constants.L);
         }
 
         /// <summary>
@@ -127,7 +127,7 @@ namespace Ristretto
         /// </summary>
         /// <param name="b">the Scalar to subtract from this.</param>
         /// <returns>a - b mod ℓ</returns>
-        public UnpackedScalar subtract(UnpackedScalar b)
+        public UnpackedScalar Subtract(UnpackedScalar b)
         {
             int[] difference = new int[9];
 
@@ -286,7 +286,7 @@ namespace Ristretto
             r[8] = (int)(carry & 0xffffffff);
             
             // Result may be >= l, so attempt to subtract l
-            return new UnpackedScalar(r).subtract(Constants.L);
+            return new UnpackedScalar(r).Subtract(Constants.L);
         }
 
         /// <summary>

@@ -7,41 +7,41 @@ namespace Ristretto.Test
     public class ScalarTest
     {
         // Example from RFC 8032 test case 1
-        public static readonly byte[] TV1_R_INPUT = StrUtils.hexToBytes("b6b19cd8e0426f5983fa112d89a143aa97dab8bc5deb8d5b6253c928b65272f4044098c2a990039cde5b6a4818df0bfb6e40dc5dee54248032962323e701352d");
-        public static readonly byte[] TV1_R = StrUtils.hexToBytes("f38907308c893deaf244787db4af53682249107418afc2edc58f75ac58a07404");
-        public static readonly byte[] TV1_H = StrUtils.hexToBytes("86eabc8e4c96193d290504e7c600df6cf8d8256131ec2c138a3e7e162e525404");
-        public static readonly byte[] TV1_A = StrUtils.hexToBytes("307c83864f2833cb427a2ef1c00a013cfdff2768d980c0a3a520f006904de94f");
-        public static readonly byte[] TV1_S = StrUtils.hexToBytes("5fb8821590a33bacc61e39701cf9b46bd25bf5f0595bbe24655141438e7a100b");
+        public static readonly byte[] TV1_R_INPUT = StrUtils.HexToBytes("b6b19cd8e0426f5983fa112d89a143aa97dab8bc5deb8d5b6253c928b65272f4044098c2a990039cde5b6a4818df0bfb6e40dc5dee54248032962323e701352d");
+        public static readonly byte[] TV1_R = StrUtils.HexToBytes("f38907308c893deaf244787db4af53682249107418afc2edc58f75ac58a07404");
+        public static readonly byte[] TV1_H = StrUtils.HexToBytes("86eabc8e4c96193d290504e7c600df6cf8d8256131ec2c138a3e7e162e525404");
+        public static readonly byte[] TV1_A = StrUtils.HexToBytes("307c83864f2833cb427a2ef1c00a013cfdff2768d980c0a3a520f006904de94f");
+        public static readonly byte[] TV1_S = StrUtils.HexToBytes("5fb8821590a33bacc61e39701cf9b46bd25bf5f0595bbe24655141438e7a100b");
 
 
         /// <summary>
         /// x = 2238329342913194256032495932344128051776374960164957527413114840482143558222
         /// </summary>
-        static readonly Scalar X = new Scalar(StrUtils.hexToBytes("4e5ab4345d4708845913b4641bc27d5252a585101bcc4244d449f4a879d9f204"));
+        static readonly Scalar X = new Scalar(StrUtils.HexToBytes("4e5ab4345d4708845913b4641bc27d5252a585101bcc4244d449f4a879d9f204"));
 
         /// <summary>
         ///  1/x = 6859937278830797291664592131120606308688036382723378951768035303146619657244
         /// </summary>
-        static readonly Scalar XINV = new Scalar(StrUtils.hexToBytes("1cdc17fce0e9a5bbd9247e56bb016347bbba31edd5a9bb96d50bcd7a3f962a0f"));
+        static readonly Scalar XINV = new Scalar(StrUtils.HexToBytes("1cdc17fce0e9a5bbd9247e56bb016347bbba31edd5a9bb96d50bcd7a3f962a0f"));
 
         /// <summary>
         /// y = 2592331292931086675770238855846338635550719849568364935475441891787804997264
         /// </summary>
-        static readonly Scalar Y = new Scalar(StrUtils.hexToBytes("907633fe1c4b66a4a28d2dd7678386c353d0de5455d4fc9de8ef7ac31f35bb05"));
+        static readonly Scalar Y = new Scalar(StrUtils.HexToBytes("907633fe1c4b66a4a28d2dd7678386c353d0de5455d4fc9de8ef7ac31f35bb05"));
 
         /// <summary>
         /// x*y = 5690045403673944803228348699031245560686958845067437804563560795922180092780
         /// </summary>
-        static readonly Scalar X_TIMES_Y = new Scalar(StrUtils.hexToBytes("6c3374a1894f62210aaa2fe186a6f92ce0aa75c2779581c295fc08179a73940c"));
+        static readonly Scalar X_TIMES_Y = new Scalar(StrUtils.HexToBytes("6c3374a1894f62210aaa2fe186a6f92ce0aa75c2779581c295fc08179a73940c"));
 
         /// <summary>
         ///  sage: l = 2^252 + 27742317777372353535851937790883648493 
         ///  sage: big = 2^256 - 1 
         ///  sage: repr((big % l).digits(256))
         /// </summary>
-        static readonly Scalar CANONICAL_2_256_MINUS_1 = new Scalar(StrUtils.hexToBytes("1c95988d7431ecd670cf7d73f45befc6feffffffffffffffffffffffffffff0f"));
+        static readonly Scalar CANONICAL_2_256_MINUS_1 = new Scalar(StrUtils.HexToBytes("1c95988d7431ecd670cf7d73f45befc6feffffffffffffffffffffffffffff0f"));
 
-        static readonly Scalar A_SCALAR = new Scalar(StrUtils.hexToBytes("1a0e978a90f6622d3747023f8ad8264da758aa1b88e040d1589e7b7f2376ef09"));
+        static readonly Scalar A_SCALAR = new Scalar(StrUtils.HexToBytes("1a0e978a90f6622d3747023f8ad8264da758aa1b88e040d1589e7b7f2376ef09"));
 
         static readonly sbyte[] A_NAF = new sbyte[] { 0, 13, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, -9, 0, 0, 0, 0, -11, 0, 0,
             0, 0, 3, 0, 0, 0, 0, 1, 0, 0, 0, 0, 9, 0, 0, 0, 0, -5, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 11, 0, 0, 0, 0, 11,
@@ -121,14 +121,14 @@ namespace Ristretto.Test
         [TestMethod]
         public void Reduce()
         {
-            Scalar biggest = Scalar.FromBytesModOrder(StrUtils.hexToBytes("ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"));
+            Scalar biggest = Scalar.FromBytesModOrder(StrUtils.HexToBytes("ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"));
             Assert.AreEqual(CANONICAL_2_256_MINUS_1, biggest);
         }
 
         [TestMethod]
         public void ReduceWide()
         {
-            Scalar biggest = Scalar.FromBytesModOrderWide(StrUtils.hexToBytes(
+            Scalar biggest = Scalar.FromBytesModOrderWide(StrUtils.HexToBytes(
                     "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff0000000000000000000000000000000000000000000000000000000000000000"));
             Assert.AreEqual(CANONICAL_2_256_MINUS_1, biggest);
         }
@@ -137,7 +137,7 @@ namespace Ristretto.Test
         public void canonicalDecoding()
         {
             // Canonical encoding of 1667457891
-            byte[] canonicalBytes = StrUtils.hexToBytes("6363636300000000000000000000000000000000000000000000000000000000");
+            byte[] canonicalBytes = StrUtils.HexToBytes("6363636300000000000000000000000000000000000000000000000000000000");
 
             Scalar.FromCanonicalBytes(canonicalBytes);
         }
@@ -176,9 +176,9 @@ namespace Ristretto.Test
         public void fromBitsClearsHighbit()
         {
             Scalar exact = Scalar
-                    .FromBits(StrUtils.hexToBytes("ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"));
+                    .FromBits(StrUtils.HexToBytes("ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"));
             CollectionAssert.AreEqual(
-                StrUtils.hexToBytes("ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff7f"),
+                StrUtils.HexToBytes("ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff7f"),
                 exact.ToByteArray());
         }
 
@@ -186,9 +186,9 @@ namespace Ristretto.Test
         public void addDoesNotReduceNonCanonical()
         {
             Scalar largestEd25519Scalar = Scalar
-                    .FromBits(StrUtils.hexToBytes("f8ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff7f"));
+                    .FromBits(StrUtils.HexToBytes("f8ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff7f"));
             Scalar result = Scalar.FromCanonicalBytes(
-                    StrUtils.hexToBytes("7e344775474a7f9723b63a8be92ae76dffffffffffffffffffffffffffffff0f"));
+                    StrUtils.HexToBytes("7e344775474a7f9723b63a8be92ae76dffffffffffffffffffffffffffffff0f"));
             Assert.AreNotEqual(largestEd25519Scalar.Add(Scalar.ONE), result);
             Assert.AreEqual(largestEd25519Scalar.Add(Scalar.ONE).Reduce(), result);
         }
@@ -197,9 +197,9 @@ namespace Ristretto.Test
         public void subtractDoesNotReduceNonCanonical()
         {
             Scalar largestEd25519Scalar = Scalar
-                    .FromBits(StrUtils.hexToBytes("f8ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff7f"));
+                    .FromBits(StrUtils.HexToBytes("f8ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff7f"));
             Scalar result = Scalar.FromCanonicalBytes(
-                    StrUtils.hexToBytes("7c344775474a7f9723b63a8be92ae76dffffffffffffffffffffffffffffff0f"));
+                    StrUtils.HexToBytes("7c344775474a7f9723b63a8be92ae76dffffffffffffffffffffffffffffff0f"));
             Assert.AreNotEqual(largestEd25519Scalar.Subtract(Scalar.ONE), result);
             Assert.AreEqual(largestEd25519Scalar.Subtract(Scalar.ONE).Reduce(), result);
         }
@@ -252,17 +252,17 @@ namespace Ristretto.Test
         }
 
         static readonly Scalar FORTYTWO = new Scalar(
-                StrUtils.hexToBytes("2A00000000000000000000000000000000000000000000000000000000000000"));
+                StrUtils.HexToBytes("2A00000000000000000000000000000000000000000000000000000000000000"));
         static readonly Scalar S1234567890 = new Scalar(
-                StrUtils.hexToBytes("D202964900000000000000000000000000000000000000000000000000000000"));
+                StrUtils.HexToBytes("D202964900000000000000000000000000000000000000000000000000000000"));
         
-        static readonly sbyte[] RADIX16_ZERO = StrUtils.hexToSBytes(
+        static readonly sbyte[] RADIX16_ZERO = StrUtils.HexToSBytes(
                 "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000");
         
-        static readonly sbyte[] RADIX16_ONE = StrUtils.hexToSBytes(
+        static readonly sbyte[] RADIX16_ONE = StrUtils.HexToSBytes(
                 "01000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000");
         
-        static readonly sbyte[] RADIX16_42 = StrUtils.hexToSBytes(
+        static readonly sbyte[] RADIX16_42 = StrUtils.HexToSBytes(
                 "FA030000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000");
 
         /**

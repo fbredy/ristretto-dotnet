@@ -90,30 +90,30 @@ namespace Ristretto
             }
 
             // s0,..., s22 have 21 bits, s23 has 29 bits
-            long s0 = 0x1FFFFF & FieldElement.Load_3(input, 0);
-            long s1 = 0x1FFFFF & (FieldElement.Load_4(input, 2) >> 5);
-            long s2 = 0x1FFFFF & (FieldElement.Load_3(input, 5) >> 2);
-            long s3 = 0x1FFFFF & (FieldElement.Load_4(input, 7) >> 7);
-            long s4 = 0x1FFFFF & (FieldElement.Load_4(input, 10) >> 4);
-            long s5 = 0x1FFFFF & (FieldElement.Load_3(input, 13) >> 1);
-            long s6 = 0x1FFFFF & (FieldElement.Load_4(input, 15) >> 6);
-            long s7 = 0x1FFFFF & (FieldElement.Load_3(input, 18) >> 3);
-            long s8 = 0x1FFFFF & FieldElement.Load_3(input, 21);
-            long s9 = 0x1FFFFF & (FieldElement.Load_4(input, 23) >> 5);
-            long s10 = 0x1FFFFF & (FieldElement.Load_3(input, 26) >> 2);
-            long s11 = 0x1FFFFF & (FieldElement.Load_4(input, 28) >> 7);
-            long s12 = 0x1FFFFF & (FieldElement.Load_4(input, 31) >> 4);
-            long s13 = 0x1FFFFF & (FieldElement.Load_3(input, 34) >> 1);
-            long s14 = 0x1FFFFF & (FieldElement.Load_4(input, 36) >> 6);
-            long s15 = 0x1FFFFF & (FieldElement.Load_3(input, 39) >> 3);
-            long s16 = 0x1FFFFF & FieldElement.Load_3(input, 42);
-            long s17 = 0x1FFFFF & (FieldElement.Load_4(input, 44) >> 5);
-            long s18 = 0x1FFFFF & (FieldElement.Load_3(input, 47) >> 2);
-            long s19 = 0x1FFFFF & (FieldElement.Load_4(input, 49) >> 7);
-            long s20 = 0x1FFFFF & (FieldElement.Load_4(input, 52) >> 4);
-            long s21 = 0x1FFFFF & (FieldElement.Load_3(input, 55) >> 1);
-            long s22 = 0x1FFFFF & (FieldElement.Load_4(input, 57) >> 6);
-            long s23 = (FieldElement.Load_4(input, 60) >> 3);
+            long s0 = 0x1FFFFF & FieldElement.Load3(input, 0);
+            long s1 = 0x1FFFFF & (FieldElement.Load4(input, 2) >> 5);
+            long s2 = 0x1FFFFF & (FieldElement.Load3(input, 5) >> 2);
+            long s3 = 0x1FFFFF & (FieldElement.Load4(input, 7) >> 7);
+            long s4 = 0x1FFFFF & (FieldElement.Load4(input, 10) >> 4);
+            long s5 = 0x1FFFFF & (FieldElement.Load3(input, 13) >> 1);
+            long s6 = 0x1FFFFF & (FieldElement.Load4(input, 15) >> 6);
+            long s7 = 0x1FFFFF & (FieldElement.Load3(input, 18) >> 3);
+            long s8 = 0x1FFFFF & FieldElement.Load3(input, 21);
+            long s9 = 0x1FFFFF & (FieldElement.Load4(input, 23) >> 5);
+            long s10 = 0x1FFFFF & (FieldElement.Load3(input, 26) >> 2);
+            long s11 = 0x1FFFFF & (FieldElement.Load4(input, 28) >> 7);
+            long s12 = 0x1FFFFF & (FieldElement.Load4(input, 31) >> 4);
+            long s13 = 0x1FFFFF & (FieldElement.Load3(input, 34) >> 1);
+            long s14 = 0x1FFFFF & (FieldElement.Load4(input, 36) >> 6);
+            long s15 = 0x1FFFFF & (FieldElement.Load3(input, 39) >> 3);
+            long s16 = 0x1FFFFF & FieldElement.Load3(input, 42);
+            long s17 = 0x1FFFFF & (FieldElement.Load4(input, 44) >> 5);
+            long s18 = 0x1FFFFF & (FieldElement.Load3(input, 47) >> 2);
+            long s19 = 0x1FFFFF & (FieldElement.Load4(input, 49) >> 7);
+            long s20 = 0x1FFFFF & (FieldElement.Load4(input, 52) >> 4);
+            long s21 = 0x1FFFFF & (FieldElement.Load3(input, 55) >> 1);
+            long s22 = 0x1FFFFF & (FieldElement.Load4(input, 57) >> 6);
+            long s23 = (FieldElement.Load4(input, 60) >> 3);
             long carry0;
             long carry1;
             long carry2;
@@ -415,7 +415,7 @@ namespace Ristretto
 
         public override string ToString()
         {
-            return "Scalar(" + StrUtils.bytesToHex(this.s) + ")";
+            return "Scalar(" + StrUtils.BytesToHex(this.s) + ")";
         }
 
         /// <summary>
@@ -455,7 +455,7 @@ namespace Ristretto
         /// <returns>a + b modulo ℓ</returns>
         public Scalar Add(Scalar b)
         {
-            return new Scalar(UnpackedScalar.FromByteArray(this.s).add(UnpackedScalar.FromByteArray(b.s)).ToByteArray());
+            return new Scalar(UnpackedScalar.FromByteArray(this.s).Add(UnpackedScalar.FromByteArray(b.s)).ToByteArray());
         }
 
         /// <summary>
@@ -466,7 +466,7 @@ namespace Ristretto
         public Scalar Subtract(Scalar b)
         {
             return new Scalar(
-                    UnpackedScalar.FromByteArray(this.s).subtract(UnpackedScalar.FromByteArray(b.s)).ToByteArray());
+                    UnpackedScalar.FromByteArray(this.s).Subtract(UnpackedScalar.FromByteArray(b.s)).ToByteArray());
         }
 
         /// <summary>
@@ -487,42 +487,42 @@ namespace Ristretto
         /// <returns>a * b + c modulo ℓ</returns>
         public Scalar MultiplyAndAdd(Scalar b, Scalar c)
         {
-            long a0 = 0x1FFFFF & FieldElement.Load_3(this.s, 0);
-            long a1 = 0x1FFFFF & (FieldElement.Load_4(this.s, 2) >> 5);
-            long a2 = 0x1FFFFF & (FieldElement.Load_3(this.s, 5) >> 2);
-            long a3 = 0x1FFFFF & (FieldElement.Load_4(this.s, 7) >> 7);
-            long a4 = 0x1FFFFF & (FieldElement.Load_4(this.s, 10) >> 4);
-            long a5 = 0x1FFFFF & (FieldElement.Load_3(this.s, 13) >> 1);
-            long a6 = 0x1FFFFF & (FieldElement.Load_4(this.s, 15) >> 6);
-            long a7 = 0x1FFFFF & (FieldElement.Load_3(this.s, 18) >> 3);
-            long a8 = 0x1FFFFF & FieldElement.Load_3(this.s, 21);
-            long a9 = 0x1FFFFF & (FieldElement.Load_4(this.s, 23) >> 5);
-            long a10 = 0x1FFFFF & (FieldElement.Load_3(this.s, 26) >> 2);
-            long a11 = (FieldElement.Load_4(this.s, 28) >> 7);
-            long b0 = 0x1FFFFF & FieldElement.Load_3(b.s, 0);
-            long b1 = 0x1FFFFF & (FieldElement.Load_4(b.s, 2) >> 5);
-            long b2 = 0x1FFFFF & (FieldElement.Load_3(b.s, 5) >> 2);
-            long b3 = 0x1FFFFF & (FieldElement.Load_4(b.s, 7) >> 7);
-            long b4 = 0x1FFFFF & (FieldElement.Load_4(b.s, 10) >> 4);
-            long b5 = 0x1FFFFF & (FieldElement.Load_3(b.s, 13) >> 1);
-            long b6 = 0x1FFFFF & (FieldElement.Load_4(b.s, 15) >> 6);
-            long b7 = 0x1FFFFF & (FieldElement.Load_3(b.s, 18) >> 3);
-            long b8 = 0x1FFFFF & FieldElement.Load_3(b.s, 21);
-            long b9 = 0x1FFFFF & (FieldElement.Load_4(b.s, 23) >> 5);
-            long b10 = 0x1FFFFF & (FieldElement.Load_3(b.s, 26) >> 2);
-            long b11 = (FieldElement.Load_4(b.s, 28) >> 7);
-            long c0 = 0x1FFFFF & FieldElement.Load_3(c.s, 0);
-            long c1 = 0x1FFFFF & (FieldElement.Load_4(c.s, 2) >> 5);
-            long c2 = 0x1FFFFF & (FieldElement.Load_3(c.s, 5) >> 2);
-            long c3 = 0x1FFFFF & (FieldElement.Load_4(c.s, 7) >> 7);
-            long c4 = 0x1FFFFF & (FieldElement.Load_4(c.s, 10) >> 4);
-            long c5 = 0x1FFFFF & (FieldElement.Load_3(c.s, 13) >> 1);
-            long c6 = 0x1FFFFF & (FieldElement.Load_4(c.s, 15) >> 6);
-            long c7 = 0x1FFFFF & (FieldElement.Load_3(c.s, 18) >> 3);
-            long c8 = 0x1FFFFF & FieldElement.Load_3(c.s, 21);
-            long c9 = 0x1FFFFF & (FieldElement.Load_4(c.s, 23) >> 5);
-            long c10 = 0x1FFFFF & (FieldElement.Load_3(c.s, 26) >> 2);
-            long c11 = (FieldElement.Load_4(c.s, 28) >> 7);
+            long a0 = 0x1FFFFF & FieldElement.Load3(this.s, 0);
+            long a1 = 0x1FFFFF & (FieldElement.Load4(this.s, 2) >> 5);
+            long a2 = 0x1FFFFF & (FieldElement.Load3(this.s, 5) >> 2);
+            long a3 = 0x1FFFFF & (FieldElement.Load4(this.s, 7) >> 7);
+            long a4 = 0x1FFFFF & (FieldElement.Load4(this.s, 10) >> 4);
+            long a5 = 0x1FFFFF & (FieldElement.Load3(this.s, 13) >> 1);
+            long a6 = 0x1FFFFF & (FieldElement.Load4(this.s, 15) >> 6);
+            long a7 = 0x1FFFFF & (FieldElement.Load3(this.s, 18) >> 3);
+            long a8 = 0x1FFFFF & FieldElement.Load3(this.s, 21);
+            long a9 = 0x1FFFFF & (FieldElement.Load4(this.s, 23) >> 5);
+            long a10 = 0x1FFFFF & (FieldElement.Load3(this.s, 26) >> 2);
+            long a11 = (FieldElement.Load4(this.s, 28) >> 7);
+            long b0 = 0x1FFFFF & FieldElement.Load3(b.s, 0);
+            long b1 = 0x1FFFFF & (FieldElement.Load4(b.s, 2) >> 5);
+            long b2 = 0x1FFFFF & (FieldElement.Load3(b.s, 5) >> 2);
+            long b3 = 0x1FFFFF & (FieldElement.Load4(b.s, 7) >> 7);
+            long b4 = 0x1FFFFF & (FieldElement.Load4(b.s, 10) >> 4);
+            long b5 = 0x1FFFFF & (FieldElement.Load3(b.s, 13) >> 1);
+            long b6 = 0x1FFFFF & (FieldElement.Load4(b.s, 15) >> 6);
+            long b7 = 0x1FFFFF & (FieldElement.Load3(b.s, 18) >> 3);
+            long b8 = 0x1FFFFF & FieldElement.Load3(b.s, 21);
+            long b9 = 0x1FFFFF & (FieldElement.Load4(b.s, 23) >> 5);
+            long b10 = 0x1FFFFF & (FieldElement.Load3(b.s, 26) >> 2);
+            long b11 = (FieldElement.Load4(b.s, 28) >> 7);
+            long c0 = 0x1FFFFF & FieldElement.Load3(c.s, 0);
+            long c1 = 0x1FFFFF & (FieldElement.Load4(c.s, 2) >> 5);
+            long c2 = 0x1FFFFF & (FieldElement.Load3(c.s, 5) >> 2);
+            long c3 = 0x1FFFFF & (FieldElement.Load4(c.s, 7) >> 7);
+            long c4 = 0x1FFFFF & (FieldElement.Load4(c.s, 10) >> 4);
+            long c5 = 0x1FFFFF & (FieldElement.Load3(c.s, 13) >> 1);
+            long c6 = 0x1FFFFF & (FieldElement.Load4(c.s, 15) >> 6);
+            long c7 = 0x1FFFFF & (FieldElement.Load3(c.s, 18) >> 3);
+            long c8 = 0x1FFFFF & FieldElement.Load3(c.s, 21);
+            long c9 = 0x1FFFFF & (FieldElement.Load4(c.s, 23) >> 5);
+            long c10 = 0x1FFFFF & (FieldElement.Load3(c.s, 26) >> 2);
+            long c11 = (FieldElement.Load4(c.s, 28) >> 7);
             long s0;
             long s1;
             long s2;
